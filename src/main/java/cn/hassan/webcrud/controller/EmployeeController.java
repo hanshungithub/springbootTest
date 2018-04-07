@@ -1,6 +1,8 @@
 package cn.hassan.webcrud.controller;
 
+import cn.hassan.webcrud.dao.DepartmentDao;
 import cn.hassan.webcrud.dao.EmployeeDao;
+import cn.hassan.webcrud.entities.Department;
 import cn.hassan.webcrud.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,20 @@ public class EmployeeController {
     @Autowired
     private EmployeeDao employeeDao;
 
+    @Autowired
+    private DepartmentDao departmentDao;
+
     @GetMapping("/emps")
     public String list(Model model) {
         Collection<Employee> all = employeeDao.getAll();
         model.addAttribute("emps", all);
         return "emps/list";
+    }
+
+    @GetMapping("/emp")
+    public String toAddEmpPage(Model model) {
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts", departments);
+        return "emps/add";
     }
 }
