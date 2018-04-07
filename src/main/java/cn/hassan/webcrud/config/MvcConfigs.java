@@ -3,6 +3,8 @@ package cn.hassan.webcrud.config;
 
 import cn.hassan.webcrud.component.LanuageResolver;
 import cn.hassan.webcrud.component.LoginHandlerInterceptor;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -40,6 +42,17 @@ public class MvcConfigs extends WebMvcConfigurerAdapter {
     @Bean
     public LocaleResolver localeResolver() {
         return new LanuageResolver();
+    }
+
+    //制定自定化的容器
+    //@Bean(如果代码注册需要打开，放到spring容器中)
+    public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
+        return new EmbeddedServletContainerCustomizer() {
+            @Override
+            public void customize(ConfigurableEmbeddedServletContainer container) {
+                container.setPort(8083);
+            }
+        };
     }
 
 
