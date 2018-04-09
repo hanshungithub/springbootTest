@@ -39,7 +39,7 @@ public class ServletConfigs {
     }
 
     //制定自定化的容器(如果代码注册需要打开，放到spring容器中)
-    @Bean
+    //@Bean
     public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {
             @Override
