@@ -44,16 +44,5 @@ public class MvcConfigs extends WebMvcConfigurerAdapter {
         return new LanuageResolver();
     }
 
-    //制定自定化的容器
-    //@Bean(如果代码注册需要打开，放到spring容器中)
-    public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
-        return new EmbeddedServletContainerCustomizer() {
-            @Override
-            public void customize(ConfigurableEmbeddedServletContainer container) {
-                container.setPort(8083);
-            }
-        };
-    }
-
 
 }
